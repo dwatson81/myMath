@@ -1,0 +1,64 @@
+
+
+from myMath import *
+
+mathClass = MyMathClass(0, 0, "TEST")
+
+mathClass.Greeting()
+
+myMenu = mathClass.createMenu()
+
+continueProgram = "y"
+
+
+while continueProgram == "y":
+
+    try:
+        mathClass.PrintMenu(myMenu)
+
+        userEntry = input("Enter the Number corresponding yo desired selection: ")
+                
+        checkMenuEntry = mathClass.checkMenuEntry(userEntry)
+        if (checkMenuEntry):
+
+            first = input('Enter your first number:\n ')
+            second = input('Enter your second number:\n ')
+            mathClass.firstNumber = first
+            mathClass.secondNumber = second
+            checkNumbers = mathClass.CheckNumbers()
+        else:
+            print("Invalid Input. Please check your number anmd try again")
+
+
+        if (checkNumbers and checkMenuEntry):
+            userEntry = int(userEntry)
+            if (userEntry == 1):
+                mathClass.AddFunction()
+            elif (userEntry == 2):
+                mathClass.MultiplyFunction()
+            elif (userEntry == 3):
+                mathClass.DivideFunction()
+            elif (userEntry == 4):
+                opSymbol = input('Enter your operation symbol [+, -, *, /]:\n ')
+                if (opSymbol == '+' or opSymbol == '-' or opSymbol =='*' or opSymbol == '/'):
+                    scalcInput = first + ',' + second + ',' + opSymbol
+                    mathClass.scalc(scalcInput)
+                else:
+                    print('Invalid Operation')
+            elif (userEntry == 5):
+                resultDictionary = mathClass.AllInOne()
+                print(resultDictionary)
+            else:
+                print('Unknown Error')
+        else:
+            print('Invalid Input. Please check number and try again.')
+
+        continueProgram = ""
+
+        while continueProgram != 'y' and continueProgram != 'n':
+            continueProgram = input('Would you like to try again? y for Yes and n for No: \n ')
+            if (continueProgram != 'y' and continueProgram != 'n'):
+                print('Input not understood. Try again.')
+
+    except:
+        print("Internal Error!")
