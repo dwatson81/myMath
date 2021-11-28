@@ -1,0 +1,102 @@
+
+class MyMathClass:
+    firstNumber = 0
+    secondNumber = 0
+    greetingName = ""
+
+    def __init__(self, fnum, snum, gName):
+        self.firstNumber = fnum
+        self.secondNumber = snum
+        self.greetingName = gName
+
+    def Greeting(self):
+        print("Welcome " + self.greetingName + "!")
+
+    def CheckNumbers(self):
+        try:
+            lower = int(self.firstNumber)
+            upper = int(self.secondNumber)
+
+            return True
+        except:
+            return False
+
+    def checkMenuEntry(self, input):
+        try:
+            entry = int(input)
+            if entry >= 1 and entry <= 6:
+                return True
+            else:
+                return False
+        except:
+            return False
+
+    def createMenu(self):
+        menuList = []
+        menuList.append('1. Add two numbers')
+        menuList.append('2, Multiply two numbers')
+        menuList.append('3. Divide two numbers')
+        menuList.append('4. Scalc')
+        menuList.append('5. All in one.')
+
+        return menuList
+
+    def PrintMenu(self, myList):
+        for i in myList:
+            print(i)
+
+    def AddFunction(self):
+        result = int(self.firstNumber) + int(self.secondNumber)
+        print(f"Result of Addition is: {result}")
+        return result
+        
+    def MultiplyFunction(self):
+        result = int(self.firstNumber) * int(self.secondNumber)
+        print(f"Result of Multiplication is: {result}")
+        return result
+
+    def DivideFunction(self):
+        try:
+            result = int(self.firstNumber) / (self.secondNumber)
+            print(f"Result of Division is: {result}")
+        except:
+            result = 0
+            print("Invalid inputs for operation. Try again")
+
+        return result
+
+    def SubtractFunction(self):
+        result = int(self.firstNumber) - int(self.secondNumber)
+        print(f"Result of Subtraction is: {result}")
+        return result
+
+    def AllInOne(self):
+        resultDictionary = {'Add' : [], 'Subtract' : [], 'Multiply' : [], 'Divide' : []}
+
+        resultDictionary['Add'].append(AddFunction(self.firstNumber, secondNumber))
+        resultDictionary['Subtract'].append(SubtractFunction(self.firstNumber, secondNumber))
+        resultDictionary['Multiply'].append(MultiplyFunction(self.firstNumber, self.secondNumber))
+        resultDictionary['Divide'].append(DivideFunction(self.firstNumber,self.secondNumber))
+
+        return resultDictionary
+
+    def scalc(self, input):
+        try:
+            
+            
+            stringInput = input.split(',')
+            if stringInput[2] == '+':
+                AddFunction(int(stringInput[0]), int(stringInput[1]))
+            elif stringInput[2]== "-":
+                SubtractFunction(int(stringInput[0]), int(stringInput[1]))
+            elif stringInput[2] == "/":
+                DivideFunction(int(stringInput[0]), int(stringInput[1]))
+            elif stringInput[2] == "*":
+                MultiplyFunction(int(stringInput[0]), int(stringInput[1]))
+            else:
+                print("Invalid Input")
+        except:
+            print("Internal Error")
+    
+
+        
